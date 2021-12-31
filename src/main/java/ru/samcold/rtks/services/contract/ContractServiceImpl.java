@@ -1,5 +1,6 @@
 package ru.samcold.rtks.services.contract;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import ru.samcold.rtks.domain.Contract;
@@ -18,7 +19,7 @@ public class ContractServiceImpl implements ContractService {
 
     @Override
     public Iterable<Contract> findAll() {
-        return repository.findAll();
+        return repository.findAll(Sort.by(Sort.Direction.DESC, "date"));
     }
 
     @Override
