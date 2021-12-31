@@ -35,7 +35,6 @@ public class Crane implements Serializable {
     private Customer customer;
 
     @OneToMany(targetEntity = Statement.class, mappedBy = "crane")
-    //@OrderBy(Statement_.STATEMENT_DATE)
     private List<Statement> statementList;
 
     @Override
@@ -53,11 +52,5 @@ public class Crane implements Serializable {
         this.name = proxy.nameProperty().get();
         this.zav = proxy.zavProperty().get();
         this.reg = proxy.regProperty().get();
-    }
-
-    public String zavAndReg() {
-        String z =  zav != null ? "зав.№ " + zav : "";
-        String r = reg != null ? "рег.№ " + reg : "";
-        return z + " " + r;
     }
 }
