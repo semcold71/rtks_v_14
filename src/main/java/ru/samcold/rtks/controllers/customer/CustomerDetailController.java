@@ -1,10 +1,9 @@
 package ru.samcold.rtks.controllers.customer;
 
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import net.rgielen.fxweaver.core.FxWeaver;
 import net.rgielen.fxweaver.core.FxmlView;
@@ -21,6 +20,8 @@ import ru.samcold.rtks.domain.proxy.CustomerProxy;
 import ru.samcold.rtks.services.customer.CustomerService;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Component
@@ -30,6 +31,8 @@ public class CustomerDetailController implements DetailController<Customer> {
     //region FXML
     @FXML
     private AnchorPane anchorRoot;
+    @FXML
+    private Accordion accordion;
 
     @FXML
     private TextField name2_tf;
@@ -137,6 +140,17 @@ public class CustomerDetailController implements DetailController<Customer> {
         ValidationSupport vs = new ValidationSupport();
         vs.registerValidator(name_tf, Validator.createEmptyValidator("Это поле должно быть заполнено.", Severity.ERROR));
         vs.registerValidator(address_tf, Validator.createEmptyValidator("Это поле должно быть заполнено.", Severity.ERROR));
+        vs.registerValidator(name2_tf, Validator.createEmptyValidator("Это поле должно быть заполнено.", Severity.ERROR));
+        vs.registerValidator(address2_tf, Validator.createEmptyValidator("Это поле должно быть заполнено.", Severity.ERROR));
+        vs.registerValidator(inn_tf, Validator.createEmptyValidator("Это поле должно быть заполнено.", Severity.ERROR));
+        vs.registerValidator(kpp_tf, Validator.createEmptyValidator("Это поле должно быть заполнено.", Severity.ERROR));
+        vs.registerValidator(ogrn_tf, Validator.createEmptyValidator("Это поле должно быть заполнено.", Severity.ERROR));
+        vs.registerValidator(rs_tf, Validator.createEmptyValidator("Это поле должно быть заполнено.", Severity.ERROR));
+        vs.registerValidator(ks_tf, Validator.createEmptyValidator("Это поле должно быть заполнено.", Severity.ERROR));
+        vs.registerValidator(bank_tf, Validator.createEmptyValidator("Это поле должно быть заполнено.", Severity.ERROR));
+        vs.registerValidator(bik_tf, Validator.createEmptyValidator("Это поле должно быть заполнено.", Severity.ERROR));
+        vs.registerValidator(boss_tf, Validator.createEmptyValidator("Это поле должно быть заполнено.", Severity.ERROR));
+        vs.registerValidator(post_tf, Validator.createEmptyValidator("Это поле должно быть заполнено.", Severity.ERROR));
         save_btn.disableProperty().bind(vs.invalidProperty());
     }
 
