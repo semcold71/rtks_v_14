@@ -1,8 +1,5 @@
 package ru.samcold.rtks.controllers.customer;
 
-import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -118,30 +115,6 @@ public class CustomerDetailController implements DetailController<Customer> {
         DetailController.super.initialize(entity);
 
     }
-
-
-//    private void test1(List<Node> nodeList) {
-//        for (Node node : nodeList) {
-//            if (node instanceof TextInputControl) {
-//                ((TextInputControl) node).textProperty().set("Ok");
-//                vs.registerValidator((Control) node, Validator.createEmptyValidator("Это поле должно быть заполнено.", Severity.ERROR));
-//            }
-//
-//            // recursive
-//            if (node instanceof Pane) {
-//                test1(((Pane) node).getChildren(), vs);
-//            }
-//        }
-//    }
-
-//    private void test() {
-//        for (TitledPane titledPane : accordion.getPanes()) {
-//            if (!titledPane.getText().equals("Контакты")) {
-//                Pane pane = (Pane) titledPane.getContent();
-//                test1(pane.getChildren());
-//            }
-//        }
-//    }
 
     @Override
     public void initFields() {
