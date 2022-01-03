@@ -1,10 +1,14 @@
 package ru.samcold.rtks.controllers.customer;
 
+import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import net.rgielen.fxweaver.core.FxWeaver;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.controlsfx.validation.Severity;
@@ -20,7 +24,6 @@ import ru.samcold.rtks.domain.proxy.CustomerProxy;
 import ru.samcold.rtks.services.customer.CustomerService;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -113,7 +116,32 @@ public class CustomerDetailController implements DetailController<Customer> {
         proxy = new CustomerProxy(entity);
 
         DetailController.super.initialize(entity);
+
     }
+
+
+//    private void test1(List<Node> nodeList) {
+//        for (Node node : nodeList) {
+//            if (node instanceof TextInputControl) {
+//                ((TextInputControl) node).textProperty().set("Ok");
+//                vs.registerValidator((Control) node, Validator.createEmptyValidator("Это поле должно быть заполнено.", Severity.ERROR));
+//            }
+//
+//            // recursive
+//            if (node instanceof Pane) {
+//                test1(((Pane) node).getChildren(), vs);
+//            }
+//        }
+//    }
+
+//    private void test() {
+//        for (TitledPane titledPane : accordion.getPanes()) {
+//            if (!titledPane.getText().equals("Контакты")) {
+//                Pane pane = (Pane) titledPane.getContent();
+//                test1(pane.getChildren());
+//            }
+//        }
+//    }
 
     @Override
     public void initFields() {
@@ -138,20 +166,29 @@ public class CustomerDetailController implements DetailController<Customer> {
 
         // validator
         ValidationSupport vs = new ValidationSupport();
-        vs.registerValidator(name_tf, Validator.createEmptyValidator("Это поле должно быть заполнено.", Severity.ERROR));
-        vs.registerValidator(address_tf, Validator.createEmptyValidator("Это поле должно быть заполнено.", Severity.ERROR));
-        vs.registerValidator(name2_tf, Validator.createEmptyValidator("Это поле должно быть заполнено.", Severity.ERROR));
-        vs.registerValidator(address2_tf, Validator.createEmptyValidator("Это поле должно быть заполнено.", Severity.ERROR));
-        vs.registerValidator(inn_tf, Validator.createEmptyValidator("Это поле должно быть заполнено.", Severity.ERROR));
-        vs.registerValidator(kpp_tf, Validator.createEmptyValidator("Это поле должно быть заполнено.", Severity.ERROR));
-        vs.registerValidator(ogrn_tf, Validator.createEmptyValidator("Это поле должно быть заполнено.", Severity.ERROR));
-        vs.registerValidator(rs_tf, Validator.createEmptyValidator("Это поле должно быть заполнено.", Severity.ERROR));
-        vs.registerValidator(ks_tf, Validator.createEmptyValidator("Это поле должно быть заполнено.", Severity.ERROR));
-        vs.registerValidator(bank_tf, Validator.createEmptyValidator("Это поле должно быть заполнено.", Severity.ERROR));
-        vs.registerValidator(bik_tf, Validator.createEmptyValidator("Это поле должно быть заполнено.", Severity.ERROR));
-        vs.registerValidator(boss_tf, Validator.createEmptyValidator("Это поле должно быть заполнено.", Severity.ERROR));
-        vs.registerValidator(post_tf, Validator.createEmptyValidator("Это поле должно быть заполнено.", Severity.ERROR));
+
+        for (TitledPane titledPane : accordion.getPanes()) {
+            if (!titledPane.getText().equals("Примечание") && !titledPane.getText().equals("Контакты")) {
+                Pane pane = (Pane) titledPane.getContent();
+                setValidator(pane.getChildren(), vs);
+            }
+        }
+
         save_btn.disableProperty().bind(vs.invalidProperty());
+    }
+
+    private void setValidator(List<Node> nodeList, ValidationSupport vs) {
+        for (Node node : nodeList) {
+            if (node instanceof TextInputControl) {
+                vs.registerValidator((Control) node,
+                        Validator.createEmptyValidator("Это поле должно быть заполнено.", Severity.ERROR));
+            }
+
+            // recursive
+            if (node instanceof Pane) {
+                setValidator(((Pane) node).getChildren(), vs);
+            }
+        }
     }
 
     @Override
