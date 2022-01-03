@@ -11,8 +11,8 @@
 <?import org.controlsfx.control.textfield.CustomTextField?>
 
 <AnchorPane fx:id="anchorRoot" prefHeight="670.0" prefWidth="1172.0" styleClass="anchor-pane"
-            stylesheets="@../styles/style.css"
-            xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            stylesheets="@../../styles/style.css" xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
             fx:controller="ru.samcold.rtks.controllers.contract.ContractListController">
     <children>
         <TableView fx:id="tableView" layoutX="35.0" layoutY="78.0" prefHeight="200.0" prefWidth="200.0"

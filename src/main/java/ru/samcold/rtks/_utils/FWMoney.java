@@ -1,6 +1,5 @@
 package ru.samcold.rtks._utils;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -68,8 +67,8 @@ public class FWMoney {
         // получаем отдельно рубли и копейки
         long rub = asBigDecimal(value).longValue();
         String[] moi = asBigDecimal(value).toString().split("\\.");
-        long kop = Long.valueOf(moi[1]);
-        if (!moi[1].substring(0, 1).equals("0")) {// начинается не с нуля
+        long kop = Long.parseLong(moi[1]);
+        if (moi[1].charAt(0) != '0') {// начинается не с нуля
             if (kop < 10)
                 kop *= 10;
         }
@@ -98,8 +97,8 @@ public class FWMoney {
         // Больше нуля
         int lev = segments.size();
         for (int i = 0; i < segments.size(); i++) {// перебираем сегменты
-            int sexi = (int) Integer.valueOf(forms[lev][3].toString());// определяем род
-            int ri = (int) Integer.valueOf(segments.get(i).toString());// текущий сегмент
+            int sexi = (int) Integer.parseInt(forms[lev][3].toString());// определяем род
+            int ri = (int) Integer.parseInt(segments.get(i).toString());// текущий сегмент
             if (ri == 0 && lev > 1) {// если сегмент ==0 И не последний уровень(там Units)
                 lev--;
                 continue;
@@ -109,10 +108,10 @@ public class FWMoney {
             if (rs.length() == 1) rs = "00" + rs;// два нулика в префикс?
             if (rs.length() == 2) rs = "0" + rs; // или лучше один?
             // получаем циферки для анализа
-            int r1 = (int) Integer.valueOf(rs.substring(0, 1)); //первая цифра
-            int r2 = (int) Integer.valueOf(rs.substring(1, 2)); //вторая
-            int r3 = (int) Integer.valueOf(rs.substring(2, 3)); //третья
-            int r22 = (int) Integer.valueOf(rs.substring(1, 3)); //вторая и третья
+            int r1 = (int) Integer.parseInt(rs.substring(0, 1)); //первая цифра
+            int r2 = (int) Integer.parseInt(rs.substring(1, 2)); //вторая
+            int r3 = (int) Integer.parseInt(rs.substring(2, 3)); //третья
+            int r22 = (int) Integer.parseInt(rs.substring(1, 3)); //вторая и третья
             // Супер-нано-анализатор циферок
             if (ri > 99) o += str100[r1] + " "; // Сотни
             if (r22 > 20) {// >20

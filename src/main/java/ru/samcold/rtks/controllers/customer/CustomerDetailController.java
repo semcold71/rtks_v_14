@@ -113,7 +113,6 @@ public class CustomerDetailController implements DetailController<Customer> {
         proxy = new CustomerProxy(entity);
 
         DetailController.super.initialize(entity);
-
     }
 
     @Override

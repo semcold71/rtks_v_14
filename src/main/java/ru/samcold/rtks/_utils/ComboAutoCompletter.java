@@ -25,7 +25,7 @@ public class ComboAutoCompletter {
             }
         });
         comboBox.addEventHandler(KeyEvent.KEY_PRESSED, t -> comboBox.hide());
-        comboBox.addEventHandler(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>() {
+        comboBox.addEventHandler(KeyEvent.KEY_RELEASED, new EventHandler<>() {
 
             private boolean moveCaretToPos = false;
             private int caretPos;

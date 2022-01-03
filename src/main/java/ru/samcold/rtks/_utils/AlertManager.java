@@ -7,6 +7,8 @@ import javafx.scene.control.DialogPane;
 import org.springframework.stereotype.Component;
 import ru.samcold.rtks.FormApplication;
 
+import java.util.Objects;
+
 @Component
 public class AlertManager {
 
@@ -25,7 +27,7 @@ public class AlertManager {
         ((Button) alert.getDialogPane().lookupButton(ButtonType.CANCEL)).setDefaultButton(true);
 
         DialogPane pane = alert.getDialogPane();
-        pane.getStylesheets().add(FormApplication.class.getResource("/styles/style.css").toExternalForm());
+        pane.getStylesheets().add(Objects.requireNonNull(FormApplication.class.getResource("/styles/style.css")).toExternalForm());
 
         alert.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {

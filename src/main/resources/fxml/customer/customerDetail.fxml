@@ -16,8 +16,8 @@
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane fx:id="anchorRoot" prefHeight="670.0" prefWidth="1172.0" styleClass="anchor-pane"
-            stylesheets="@../../styles/style.css" xmlns="http://javafx.com/javafx/16"
-            xmlns:fx="http://javafx.com/fxml/1"
+            stylesheets="@../../styles/style.css" xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
             fx:controller="ru.samcold.rtks.controllers.customer.CustomerDetailController">
     <children>
         <Label styleClass="title-label" text="Заказчик (редактирование)" AnchorPane.leftAnchor="0.0"
