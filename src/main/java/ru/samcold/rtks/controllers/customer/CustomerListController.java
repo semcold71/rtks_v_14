@@ -1,5 +1,6 @@
 package ru.samcold.rtks.controllers.customer;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -128,6 +129,8 @@ public class CustomerListController implements ListController<Customer> {
                 initTable();
                 searchTextField.clear();
             }
+            // move focus to addButton
+            Platform.runLater(() -> addButton.requestFocus());
         });
 
         addCraneButton.setOnAction(event -> showCraneDetail());

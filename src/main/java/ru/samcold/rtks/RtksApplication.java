@@ -10,5 +10,4 @@ public class RtksApplication {
     public static void main(String[] args) {
         Application.launch(FormApplication.class, args);
     }
-
 }

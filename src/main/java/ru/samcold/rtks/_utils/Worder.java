@@ -3,6 +3,9 @@ package ru.samcold.rtks._utils;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.apache.poi.xwpf.usermodel.*;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTP;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTSimpleField;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTText;
 import org.springframework.stereotype.Component;
 import padeg.lib.Padeg;
 import ru.samcold.rtks.domain.Contract;
@@ -10,6 +13,7 @@ import ru.samcold.rtks.domain.Customer;
 import ru.samcold.rtks.domain.Work;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -198,6 +202,36 @@ public class Worder {
         saveDocument(document);
     }
 
+    public void printTest() throws IOException {
+        XWPFDocument document = new XWPFDocument(
+                new FileInputStream("/Users/semcold/Documents/Safety/Act/act.docx"));
+
+        //System.out.println(document.getParagraphs().get(2).getText());
+//        for (XWPFRun run : document.getParagraphs().get(2).getRuns()) {
+//            System.out.println(run.getText(0));
+//        }
+
+        updateParagraph(document.getParagraphs(), "crane_full_name", "My Crane");
+        updateParagraph(document.getParagraphs(), "rtk", "RTK");
+
+        XWPFParagraph para = document.getTables().get(0).getRows().get(0).getCell(1).getParagraphs().get(0);
+        List<CTSimpleField> list =  para.getCTP().getFldSimpleList();
+        for (CTSimpleField f : list) {
+            System.out.println(f.getFldData().toString());
+//            if (f.getInstr().contains("ZakFullName")) {
+//                CTP ctP = CTP.Factory.newInstance();
+//                CTText t = ctP.addNewR().addNewT();
+//                t.setStringValue("header");
+//                f.setFldData(t);
+//            }
+        }
+        CTSimpleField ctSimpleField = para.getCTP().addNewFldSimple();
+        ctSimpleField.setInstr("DOCVARIABLE ZakZip" + " \\* MERGEFORMAT ");
+        ctSimpleField.addNewR().addNewT().setStringValue("ZakZip");
+
+
+        saveDocument(document);
+    }
 
     // Утилиты
     /**

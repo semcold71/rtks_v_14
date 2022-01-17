@@ -16,6 +16,7 @@
 
 
 .root {
+    -fx-warning-color: #F65149;
     -fx-base: #3C3F41;
     -fx-background: #3C3F41;
     -fx-font-size: 14;
@@ -189,7 +190,7 @@
 }
 
 .tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-close-button:hover {
-	-fx-background-color: red;
+	-fx-background-color: -fx-warning-color;
 	-fx-cursor: hand;
 }
 
@@ -203,6 +204,16 @@
 	-fx-pref-height: 30;
 	-fx-min-width: 30;
 }
+
+#warning-button {
+    -fx-border-color: -fx-warning-color;
+    -fx-text-fill: -fx-warning-color;
+}
+#warning-button:hover {
+    -fx-text-fill: #fff;
+    -fx-background-color: -fx-warning-color;
+}
+
 
 #hyper-link-button {
     -fx-background-color: transparent;
