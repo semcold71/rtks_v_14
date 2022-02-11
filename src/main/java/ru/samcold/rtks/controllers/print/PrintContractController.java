@@ -26,8 +26,7 @@ public class PrintContractController {
     public void initialize(Contract contract) {
         save_btn.setOnAction(actionEvent -> {
             try {
-                //worder.printContract(contract);
-                worder.printTest();
+                worder.printContract(contract);
             } catch (IOException e) {
                 e.printStackTrace();
             }
