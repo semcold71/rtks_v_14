@@ -145,13 +145,13 @@ public class Worder {
             row.getCell(3).getParagraphs().get(0).setAlignment(ParagraphAlignment.CENTER);
 
             double price = contract.getWorkList().get(i).getPrice();
-            row.getCell(4).getParagraphs().get(0).createRun().setText(
-                    String.format("%,.2f%n", getPrepayValue(price, contract.getPrepay(), prepayKey)));
+            String priceStr = String.format("%,.2f%n", getPrepayValue(price, contract.getPrepay(), prepayKey));
+            row.getCell(4).getParagraphs().get(0).createRun().setText(priceStr);
             row.getCell(4).getParagraphs().get(0).setAlignment(ParagraphAlignment.RIGHT);
 
             double sum = contract.getWorkList().get(i).getTotal();
-            row.getCell(5).getParagraphs().get(0).createRun().setText(
-                    String.format("%,.2f%n", getPrepayValue(sum, contract.getPrepay(), prepayKey)));
+            String sumStr = String.format("%,.2f%n", getPrepayValue(sum, contract.getPrepay(), prepayKey));
+            row.getCell(5).getParagraphs().get(0).createRun().setText(sumStr);
             row.getCell(5).getParagraphs().get(0).setAlignment(ParagraphAlignment.RIGHT);
 
             if (i < contract.getWorkList().size() - 1) {
@@ -446,6 +446,22 @@ public class Worder {
      Формирование суммы предоплаты, если она предусмотрена договором
      */
     private double getPrepayValue(double value, int prepay, int prepayKey) {
-        return prepayKey == 1 ? value * prepay / 100.0 : value * (100 - prepay) / 100.0;
+        double result;
+
+        switch (prepayKey) {
+            case 0:
+                result = value;
+                break;
+            case 1:
+                result = value * prepay / 100.0;
+                break;
+            case 2:
+                result = value * (100 - prepay) / 100.0;
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + prepayKey);
+        }
+
+        return result;
     }
 }
