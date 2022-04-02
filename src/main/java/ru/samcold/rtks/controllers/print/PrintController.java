@@ -110,4 +110,8 @@ public class PrintController {
         container_pane.getChildren().clear();
         container_pane.getChildren().add(parent);
     }
+
+    public Button getCancel_btn() {
+        return cancel_btn;
+    }
 }
