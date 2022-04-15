@@ -48,7 +48,7 @@
             <buttons>
                 <Button fx:id="addButton" mnemonicParsing="false" text="Новый"/>
                 <Button fx:id="editButton" mnemonicParsing="false" text="Изменить"/>
-                <Button fx:id="deleteButton" mnemonicParsing="false" text="Удалить"/>
+                <Button id="warning-button" fx:id="deleteButton" mnemonicParsing="false" text="Удалить"/>
             </buttons>
         </ButtonBar>
         <ButtonBar layoutX="-424.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="1142.0"

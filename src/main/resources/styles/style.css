@@ -17,6 +17,7 @@
 
 .root {
     -fx-warning-color: #F65149;
+    -fx-green-color: #5bbb57;
     -fx-base: #3C3F41;
     -fx-background: #3C3F41;
     -fx-font-size: 14;
@@ -212,6 +213,15 @@
 #warning-button:hover {
     -fx-text-fill: #fff;
     -fx-background-color: -fx-warning-color;
+}
+
+#green-button {
+    -fx-border-color: -fx-green-color;
+    -fx-text-fill: -fx-green-color;
+}
+#green-button:hover {
+    -fx-text-fill: #fff;
+    -fx-background-color: -fx-green-color;
 }
 
 

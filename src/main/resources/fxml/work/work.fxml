@@ -85,7 +85,7 @@
                    AnchorPane.rightAnchor="14.0">
             <buttons>
                 <Button fx:id="save_btn" mnemonicParsing="false" text="Сохранить"/>
-                <Button fx:id="cancel_btn" mnemonicParsing="false" text="Отмена"/>
+                <Button id="warning-button" fx:id="cancel_btn" mnemonicParsing="false" text="Отмена"/>
             </buttons>
         </ButtonBar>
     </children>

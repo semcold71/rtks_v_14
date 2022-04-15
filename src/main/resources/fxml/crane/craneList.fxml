@@ -25,7 +25,7 @@
                     <buttons>
                         <Button fx:id="addButton" mnemonicParsing="false" text="Новый" />
                         <Button fx:id="editButton" mnemonicParsing="false" text="Изменить" />
-                        <Button fx:id="deleteButton" mnemonicParsing="false" text="Удалить" />
+                        <Button id="warning-button" fx:id="deleteButton" mnemonicParsing="false" text="Удалить" />
                     </buttons>
                 </ButtonBar>
                 <Button fx:id="statement_btn" mnemonicParsing="false" text="Заявление" />
